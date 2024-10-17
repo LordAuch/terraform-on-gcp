@@ -10,6 +10,13 @@ resource "google_compute_subnetwork" "app-subnet" {
   network       = google_compute_network.app-vpc.id
 }
 
+resource "google_compute_subnetwork" "app-subnet-west1" {
+  name          = "app-west1"
+  ip_cidr_range = "10.2.0.0/16"
+  region        = "us-west1"
+  network       = google_compute_network.app-vpc.id
+}
+
 
 data "google_compute_image" "ubuntu" {
   most_recent = true
@@ -28,7 +35,7 @@ resource "google_compute_instance" "web" {
     }
   }
   network_interface {
-   subnetwork = "app"
+   subnetwork = "app-west1"
    access_config {
       # Leave empty for dynamic public IP
     }
