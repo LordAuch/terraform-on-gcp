@@ -3,13 +3,6 @@ resource "google_compute_network" "app-vpc" {
   auto_create_subnetworks = false
 }
 
-resource "google_compute_subnetwork" "app-subnet" {
-  name          = "app"
-  ip_cidr_range = "10.2.0.0/16"
-  region        = "us-central1"
-  network       = google_compute_network.app-vpc.id
-}
-
 resource "google_compute_subnetwork" "app-subnet-west1" {
   name          = "app-west1"
   ip_cidr_range = "10.2.0.0/16"
