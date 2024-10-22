@@ -1,40 +1,40 @@
 
-varriable "project_id"{
+variable "project_id"{
     type = string
     default = "edher-gcp1"
 }
 
-varriable "region"{
+variable "region"{
     type = string
     default = = "us-west1"
 }
 
-varriable "network_name"{
+variable "network_name"{
     type = string
     default = "app"
 }
 
-varriable "network_ip_range"{
+variable "network_ip_range"{
     type = string
     default = "10.2.0.0/16"
 }
 
-varriable "image_project"{
+variable "image_project"{
     type = string
     default = "ubuntu-os-cloud"
 }
 
-varriable "image_family"{
+variable "image_family"{
     type = string
     default = "ubuntu-2204-lts"
 }
 
-varriable "inst_name"{
+variable "inst_name"{
     type = string
     default = "web"
 }
 
-varriable "inst_machine_type"{
+variable "inst_machine_type"{
     type = string
     default = "e2-micro"
 }
