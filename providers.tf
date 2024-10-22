@@ -1,5 +1,5 @@
 provider "google" {
-  project = "edher-gcp1"
-  region  = "us-west1"
-  zone    = "us-west1-b"
+  project = var.project_id
+  region  = var.region
+  zone    = "${var.region}-b"
 }

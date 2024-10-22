@@ -1,11 +1,11 @@
 resource "google_compute_network" "app-vpc" {
-  name                    = "app"
+  name                    = var.network_name
   auto_create_subnetworks = false
 }
 
 resource "google_compute_subnetwork" "app-subnet-west1" {
   name          = "app-west1"
-  ip_cidr_range = "10.2.0.0/16"
+  ip_cidr_range = var.ip_cidr_range
   region        = "us-west1"
   network       = google_compute_network.app-vpc.id
 }
@@ -13,13 +13,13 @@ resource "google_compute_subnetwork" "app-subnet-west1" {
 
 data "google_compute_image" "ubuntu" {
   most_recent = true
-  project     = "ubuntu-os-cloud" 
-  family      = "ubuntu-2204-lts"
+  project     = var.image_project
+  family      = var.image_family
 }
 
 resource "google_compute_instance" "web" {
-  name         = "web"
-  machine_type = "e2-micro"
+  name         = var.inst_name
+  machine_type = var.inst_machine_type
 
   
   boot_disk {
