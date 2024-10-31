@@ -4,7 +4,7 @@ resource "google_compute_network" "app-vpc" {
 }
 
 resource "google_compute_subnetwork" "app-subnet-west1" {
-  name          = "app-west1"
+  name          = "${var.network_name}-west1"
   ip_cidr_range = var.network_ip_range
   region        = "us-west1"
   network       = google_compute_network.app-vpc.id
