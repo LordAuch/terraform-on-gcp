@@ -1,39 +1,6 @@
-resource "google_compute_network" "app-vpc" {
-  name                    = var.network_name
-  auto_create_subnetworks = false
-}
+module "qa" {
+    source = "./modules/blog"
 
-resource "google_compute_subnetwork" "app-subnet-west1" {
-  name          = "app-west1"
-  ip_cidr_range = var.network_ip_range
-  region        = "us-west1"
-  network       = google_compute_network.app-vpc.id
-}
-
-
-data "google_compute_image" "ubuntu" {
-  most_recent = true
-  project     = var.image_project
-  family      = var.image_family
-}
-
-resource "google_compute_instance" "web" {
-  name         = var.inst_name
-  machine_type = var.inst_machine_type
-
-  
-  boot_disk {
-    initialize_params {
-      image = data.google_compute_image.ubuntu.self_link
-    }
-  }
-  network_interface {
-   subnetwork = "app-west1"
-   access_config {
-      # Leave empty for dynamic public IP
-    }
-  }  
-
-  allow_stopping_for_update = true
-
+    inst_name = "euler"
+    network_name = "euler-vpc" 
 }
